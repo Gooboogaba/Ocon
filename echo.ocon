@@ -1,0 +1,311 @@
+# ==========================================
+# OCON TEST PROGRAM
+# ==========================================
+
+echo "=================================
+echo "OCON_TEST_PROGRAM
+echo "=================================
+
+
+# ==========================================
+# BASIC OUTPUT
+# ==========================================
+
+echo "=====_BASIC_OUTPUT_=====
+
+echo "hello
+echo "testing_123
+
+
+# ==========================================
+# VARIABLES
+# ==========================================
+
+echo "=====_VARIABLES_=====
+
+var "a '10
+var "b '3
+
+echo $a
+echo $b
+
+
+# ==========================================
+# BASIC ARITHMETIC
+# ==========================================
+
+echo "=====_ARITHMETIC_=====
+
+echo [ add '10 '5 ]
+echo [ sub '10 '5 ]
+echo [ mlt '10 '5 ]
+echo [ div '10 '5 ]
+
+# Expected:
+# 15
+# 5
+# 50
+# 2
+
+
+# ==========================================
+# MODULO
+# ==========================================
+
+echo "=====_MODULO_=====
+
+echo [ mod '10 '3 ]
+echo [ mod '20 '4 ]
+echo [ mod '17 '5 ]
+
+# Expected:
+# 1
+# 0
+# 2
+
+
+# ==========================================
+# INCREMENT / DECREMENT
+# ==========================================
+
+echo "=====_INCREMENT_/_DECREMENT_=====
+
+var "counter '10
+
+echo $counter
+
+increment "counter '5
+echo $counter
+
+decremnt "counter '3
+echo $counter
+
+# Expected:
+# 10
+# 15
+# 12
+
+
+# ==========================================
+# BOOLEAN FUNCTIONS
+# ==========================================
+
+echo "=====_BOOLEANS_=====
+
+echo [ iseven '10 ]
+echo [ iseven '11 ]
+
+echo [ isodd '10 ]
+echo [ isodd '11 ]
+
+echo [ isless '5 '10 ]
+echo [ isless '10 '5 ]
+
+echo [ isgreater '10 '5 ]
+echo [ isgreater '5 '10 ]
+
+echo [ isequal '5 '5 ]
+echo [ isequal '5 '10 ]
+
+
+# ==========================================
+# NOT
+# ==========================================
+
+echo "=====_NOT_=====
+
+echo [ not ~true ]
+echo [ not ~false ]
+
+
+# ==========================================
+# MATH FUNCTIONS
+# ==========================================
+
+echo "=====_MATH_=====
+
+echo [ sin '0 ]
+# 0
+
+echo [ sin '1 ]
+# 0.8414709848078965
+
+echo [ cos '0 ]
+# 1
+
+echo [ cos '1 ]
+# 0.5403023058681398
+
+echo [ tan '0 ]
+# 0
+
+echo [ tan '1 ]
+# 1.557407724654902
+
+echo [ round '5 ]
+# 5
+
+echo [ round '10 ]
+# 10
+
+echo [ abs '10 ]
+# 10
+
+echo [ abs '-10 ]
+# 10
+
+echo [ log '1 ]
+# 0
+
+echo [ log '10 ]
+# 2.302585092994046
+
+
+# ==========================================
+# EXPRESSIONS USING VARIABLES
+# ==========================================
+
+echo "=====_VARIABLES_IN_EXPRESSIONS_=====
+
+var "x '20
+var "y '7
+
+echo [ add $x $y ]
+echo [ sub $x $y ]
+echo [ mlt $x $y ]
+echo [ div $x $y ]
+echo [ mod $x $y ]
+
+# Expected:
+# 27
+# 13
+# 140
+# 2
+# 6
+
+
+# ==========================================
+# IF TRUE
+# ==========================================
+
+echo "=====_IF_TRUE_=====
+
+if ~true goto "iftrue else continue
+
+echo "ERROR_IF_TRUE_FAILED
+goto "after_if_true
+
+§ "iftrue
+echo "IF_TRUE_WORKED
+
+§ "after_if_true
+
+
+# ==========================================
+# IF FALSE
+# ==========================================
+
+echo "=====_IF_FALSE_=====
+
+if ~false goto "should_not_run else continue
+
+echo "IF_FALSE_WORKED
+goto "after_if_false
+
+§ "should_not_run
+echo "ERROR_IF_FALSE_FAILED
+
+§ "after_if_false
+
+
+# ==========================================
+# IF ELSE GOTO
+# ==========================================
+
+echo "=====_IF_ELSE_GOTO_=====
+
+if ~false goto "wrong else goto "correct
+
+echo "ERROR_ELSE_GOTO_FAILED
+goto "after_else_test
+
+§ "wrong
+echo "ERROR_WRONG_SECTION_RAN
+goto "after_else_test
+
+§ "correct
+echo "ELSE_GOTO_WORKED
+
+§ "after_else_test
+
+
+# ==========================================
+# SIMPLE LOOP
+# ==========================================
+
+echo "=====_LOOP_TEST_=====
+
+var "i '0
+
+§ "loop
+
+increment "i '1
+echo $i
+
+if [ isless $i '5 ] goto "loop else continue
+
+echo "LOOP_FINISHED
+goto "after_loop
+
+§ "after_loop
+
+
+# ==========================================
+# EVEN NUMBER LOOP
+# ==========================================
+
+echo "=====_EVEN_NUMBER_TEST_=====
+
+var "n '0
+
+§ "evenloop
+
+increment "n '1
+
+if [ iseven $n ] goto "even else goto "keepgoing
+
+§ "keepgoing
+if [ isless $n '10 ] goto "evenloop else goto "evenfailed
+
+§ "even
+echo "FOUND_EVEN_NUMBER
+echo $n
+goto "after_even_test
+
+§ "evenfailed
+echo "ERROR_NEVER_FOUND_EVEN_NUMBER
+
+§ "after_even_test
+
+
+# ==========================================
+# LARGE NUMBER TEST
+# ==========================================
+
+echo "=====_LARGE_NUMBERS_=====
+
+echo [ add '1000000 '2000000 ]
+echo [ mlt '100000 '1000 ]
+
+# Expected:
+# 3000000
+# 100000000
+
+
+# ==========================================
+# FINAL
+# ==========================================
+
+echo "=================================
+echo "ALL_TESTS_REACHED_END
+echo "=================================

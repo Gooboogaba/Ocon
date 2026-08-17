@@ -1,0 +1,70 @@
+program BILLYISAWESOME
+# We are cuttently in the main ocon program 
+# with the program name BILLYISAWESOME and section BILLYISAWESOME
+
+var "john '67 #var takes a string to create a var. 
+var "banana `true
+var "nullvar null
+
+#they start with the sybal to create the types that are not commands (exept null wich is sort of a command that creates an undisplaybule type)
+#" string
+#' number
+#` bool
+#† error (only used in echo)
+#‡ correct (only used in echo)
+#null
+#☞ path
+
+#$ means the value of that var
+echo $"john
+
+# _ turn into spaces wich cant be used in strings and things
+echo "hello,_world
+
+#rand just outputs a random number 
+#pick btween all the numbers in that list
+var "random '[rand 1 2]
+if `[= $"random '1]
+echo †Error:_you_Did_not_win_the_lotto
+#goto just gos to a section thats it
+goto "new_sec
+else
+echo ‡YAY:_You_won_the_lottory
+goto "new_sec0
+endif
+
+#sec can be sec, § , section
+sec "new_sec
+#-input is a flag commands have them you can also change other things with -"key:value
+var "usersname "Hello!_What_is_your_name? -"input
+#+ adds strings togeather not like add
+var "agean "Well_ + $"username + "_Would_you_like_to_try_agean_true/false -"input
+if `$"agean
+echo "ok
+goto "BILLYISAWESOME
+else
+exit "Program_exiting
+endif
+§ "new_sec0
+#Types of loops
+#while evry time te loop runs it checks a statment untill its false
+#repeat repeats x number of times
+var "i '0
+repeat 200
+#increment thats the name of a var and adds a number to its value its evil brother decrement does the oppicte. Notice how it does not take a var itself.
+increment "i '1
+echo "blah
+endif
+if `[≠ $"i 200]
+#goto can go to a line in the program as well :0
+goto '52 -"line 
+# whats funny is that you goto a random line with: goto '[⟦1,...,61⟧] -"line (random is like desmos lists so ... means all the values btween 1 and 61)
+endif
+#lets have some fun by doing some math
+echo '[add '1 '1]
+echo '[mlt '2 '90123] # echo supports numbers and also you cant have nestted [] a. it looks bad b. its hard to code 
+echo '[div '1 '3]
+echo '[mod '2 '20]
+# more to come!
+var "eeeeeee "[tostring ☞C:/Windows/System32/bubbles.scr]
+exit "the_end! -["runafterdeath: + $'eeeeeee]
