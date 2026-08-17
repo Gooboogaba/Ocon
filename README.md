@@ -11,8 +11,7 @@ It is made mostly by me using golang
 - Boolean operations
 - Conditionals
 - Sections
-- `goto`
-- Loops using `goto`
+- Goto command
 - Math functions
 - Comments
 - Return functions
@@ -46,4 +45,4 @@ ocon execute "filename.ocon"
 ```
 
 ## More
-This README was made only by me no ai. Sorry if there were any spelling mistakes I can't spell good.
+This README was made only by me no AI. Sorry if there were any spelling mistakes I can't spell good.
