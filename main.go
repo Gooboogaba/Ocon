@@ -17,7 +17,7 @@ func main() {
 
 	if len(os.Args) < 2 {
 		var i string
-		fmt.Println("This is OCON a language created by Oscar!")
+		fmt.Println("This is OCON a language created by Oscar! (see more at: https://github.com/oscar366/Ocon)")
 		fmt.Println(`To execute an .ocon file do: "ocon execute {path}"`)
 		fmt.Println("this is a command line tool use it in cmd")
 		fmt.Println("")
@@ -170,7 +170,7 @@ firstpos := 0
 			firstpos = i + 1
 		}
 		
-		if(element[0] == '$') {
+		if(element[0] == "$") {
 			//if it is a var then replaces
 			varname := element[1:]
 			

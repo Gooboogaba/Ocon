@@ -4,6 +4,10 @@
 Ocon is my programing language possibly the worst ever made. 🐟
 It is made mostly by me using golang
 
+OCON does not use an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree), and I probably won't add one in the future because switching to one would be difficult at this point. When I started the project, I didn't even know ASTs existed, so OCON's interpreter developed around a different approach.
+
+
+
 ## Current (semi-working) Features
 
 - Variables
@@ -44,5 +48,15 @@ See Test script.ocon
 ocon execute "filename.ocon"
 ```
 
+## Building
+Want the `.exe`? Build it yourself.
+
+You're smart. All you need is a Go compiler.
+
+```sh
+go build
+```
+
 ## More
 This README was made only by me no AI. Sorry if there were any spelling mistakes I can't spell good.
+
