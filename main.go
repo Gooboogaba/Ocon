@@ -96,6 +96,7 @@ var commmands = map[string]Command{
 	
 	//conditionals
 	"if": commands.If,
+	"import": emptycommand,
 }
 
 
@@ -109,11 +110,34 @@ fmt.Println(" ")
 //more complacted for loop :-0
 for i, line := range lines {
     parts := strings.Fields(line) // sperate by " "
-    if len(parts) >= 2 && parts[0] == "§" { //if there is more then 2 inputs and its a section then run
+    if len(parts) >= 2 && (parts[0] == "§" || parts[0] == "sec") { //if there is more then 2 inputs and its a section then run
         state.SectionList[parts[1][1:]] = i //add to the map the name and line number of the section
     }
+	
+	if len(parts) >= 2 && parts[0] == "import" {
+        if parts[1] != "i" {
+            importfile := parts[1][1:]
+
+            dat, err := os.ReadFile(importfile)
+            if err != nil {
+                panic(err)
+            }
+
+            newlines := strings.Split(string(dat), "\n")
+
+            // Replace the import line with the imported lines thank you stakoverflow
+            lines = append(
+                lines[:i],
+                append(newlines, lines[i+1:]...)...,
+            )
+
+            // Move past the newly inserted lines
+            i += len(newlines) - 1
+        }
+	}
 }
-fmt.Println("debug:")
+
+fmt.Println("debug S:")
 for key, value := range state.SectionList {
     fmt.Println("Key:", key, "Value:", value)
 }
@@ -170,7 +194,7 @@ firstpos := 0
 			firstpos = i + 1
 		}
 		
-		if(element[0] == "$") {
+		if(element[0] == '$') {
 			//if it is a var then replaces
 			varname := element[1:]
 			

@@ -20,6 +20,12 @@ OCON does not use an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree), 
 - Comments
 - Return functions
 
+## Hopefuly new Features to come
+
+- Reflection
+- Imports
+- a way to install and update ocon
+
 ## Egg samples of Ocon
 
 ### Hello world:
@@ -60,5 +66,5 @@ go build
 ## More
 This README was made only by me no AI. Sorry if there were any spelling mistakes I can't spell good.
 
-##Icon
+## Icon
 ![OCON logo](ocon.png)
