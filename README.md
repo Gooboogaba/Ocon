@@ -60,3 +60,4 @@ go build
 ## More
 This README was made only by me no AI. Sorry if there were any spelling mistakes I can't spell good.
 
+![Tux, the Linux mascot](icon.png)
