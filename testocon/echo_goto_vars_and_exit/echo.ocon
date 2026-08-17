@@ -1,4 +1,0 @@
-var "i '1
-§ "main
-increment $i [ add $i '1 ]
-goto "main
