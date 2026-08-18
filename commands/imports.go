@@ -9,19 +9,7 @@ import (
 
 
 func FancyImports(string path) {
-    r, w := io.Pipe()
 
-    go func() {
-        fmt.Fprint(w, "Hello there\n")
-        w.Close()
-    }()
-
-    a, err := io.Copy(os.Stdout, r)
-
-    if err != nil {
-        log.Fatal(err)
-    }
-	fmt.Println(a)
 }
 /*
 func main() {

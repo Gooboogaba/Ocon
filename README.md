@@ -69,8 +69,10 @@ go build
 This README was made only by me no AI. Sorry if there were any spelling mistakes I can't spell good.
 
 ## Contact me
-<oscarfoxpatterson@gmail.com>
-0thisisauser \<-- Use this one
+
+Email: [oscarfoxpatterson@gmail.com](mailto:oscarfoxpatterson@gmail.com)
+Discord: **0thisisauser** ← use this one
+
 
 ## Icon
 ![OCON logo](ocon.png)
