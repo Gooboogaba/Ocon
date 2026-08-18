@@ -7,6 +7,8 @@ It is made mostly by me using golang
 OCON does not use an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree), and I probably won't add one in the future because switching to one would be difficult at this point. When I started the project, I didn't even know ASTs existed, so OCON's interpreter developed around a different approach.
 
 
+> **Platform:** Ocon currently supports Windows only.  
+> A port to macOS and Linux may be possible in the future.
 
 ## Current (semi-working) Features
 
@@ -65,6 +67,10 @@ go build
 
 ## More
 This README was made only by me no AI. Sorry if there were any spelling mistakes I can't spell good.
+
+## Contact me
+<oscarfoxpatterson@gmail.com>
+0thisisauser \<-- Use this one
 
 ## Icon
 ![OCON logo](ocon.png)

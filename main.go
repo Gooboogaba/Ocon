@@ -115,7 +115,7 @@ for i, line := range lines {
     }
 	
 	if len(parts) >= 2 && parts[0] == "import" {
-        if parts[1] != "i" {
+        if parts[1] != "f" {
             importfile := parts[1][1:]
 
             dat, err := os.ReadFile(importfile)
@@ -133,7 +133,10 @@ for i, line := range lines {
 
             // Move past the newly inserted lines
             i += len(newlines) - 1
-        }
+        } else {
+			//go commands.FancyImports([2][1:])//2 cuz of the f
+			fmt.Println("Not curretly complete oscar is working hard on it though :)")
+		}
 	}
 }
 
