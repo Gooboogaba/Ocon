@@ -25,8 +25,7 @@ OCON does not use an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree), 
 ## Hopefuly new Features to come
 
 - Reflection
-- Imports
-- a way to install and update ocon
+- A way to install and update ocon
 
 ## Egg samples of Ocon
 

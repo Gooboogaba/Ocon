@@ -5,5 +5,3 @@ var Pointer int
 var SectionList = make(map[string]int) 
 //var storge cuz nothing better i know
 var VarStorage = make(map[string]string)
-
-var ApiPass = "empty"//for fancy imports this is the password

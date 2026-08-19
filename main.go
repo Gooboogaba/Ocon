@@ -115,7 +115,6 @@ for i, line := range lines {
     }
 	
 	if len(parts) >= 2 && parts[0] == "import" {
-        if parts[1] != "f" {
             importfile := parts[1][1:]
 
             dat, err := os.ReadFile(importfile)
@@ -133,10 +132,6 @@ for i, line := range lines {
 
             // Move past the newly inserted lines
             i += len(newlines) - 1
-        } else {
-			go commands.FancyImports(parts[3][1:])//2 cuz of the f
-			//fmt.Println("Not curretly complete oscar is working hard on it though :)")
-		}
 	}
 }
 
@@ -158,7 +153,6 @@ fmt.Println(" ")
 		execute(lines[state.Pointer])
 		state.Pointer += 1// dude to this after goto is init the pointer adds one so that is why its n-1
 	}
-	
 	
 }
 

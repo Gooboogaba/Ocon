@@ -53,10 +53,6 @@ func Intrp(args []string) []string {
 	return result
 }
 
-func AddCommand(name string, fn Function) {
-	returncommands[name] = fn
-}
-
 //all sums
 func add(args []string) []string {
 	//all functions downward are basicly a copy of this
