@@ -134,8 +134,8 @@ for i, line := range lines {
             // Move past the newly inserted lines
             i += len(newlines) - 1
         } else {
-			//go commands.FancyImports([2][1:])//2 cuz of the f
-			fmt.Println("Not curretly complete oscar is working hard on it though :)")
+			go commands.FancyImports(parts[3][1:])//2 cuz of the f
+			//fmt.Println("Not curretly complete oscar is working hard on it though :)")
 		}
 	}
 }

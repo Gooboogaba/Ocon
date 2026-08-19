@@ -9,9 +9,7 @@ import (
 
 type Function func(args []string)  []string
 
-func Intrp(args []string) []string {
-	//fmt.Println("arguments gotten to return interp:", args)
-	var returncommands = map[string]Function{
+var returncommands = map[string]Function{
 		//sums
 		"add": add,
 		"mlt": mlt,
@@ -36,7 +34,9 @@ func Intrp(args []string) []string {
 		"round": mathfuncs.Round,//#
 		"abs": mathfuncs.AbsoluteValue,//#
 		"log": mathfuncs.Logarithm,//#
-	}
+}
+
+func Intrp(args []string) []string {
 	if (len(args) == 0) {
 		fmt.Println("nothing in the return command")
 		return []string{"\"Error: empty return command"}
@@ -52,18 +52,10 @@ func Intrp(args []string) []string {
 	result := val(args[1:])
 	return result
 }
-/*
-func random(args []string) []string {
-	if (len(args) == 0) {
-		return []string{fmt.Sprintf("%f", rand.Float64())}
-	} else if(len(args) == 2) {
-		return []string{fmt.Sprintf("%f", rand.NewPCG(args[0], args[1]))}
-	} else {
-		fmt.Println("wrong amount of args for rand please use 2 or none")
-		return "\"Error: wrong amount of args for rand "
-	}
+
+func AddCommand(name string, fn Function) {
+	returncommands[name] = fn
 }
-*/
 
 //all sums
 func add(args []string) []string {
