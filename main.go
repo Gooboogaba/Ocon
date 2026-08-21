@@ -9,7 +9,8 @@ import (
 	"oscarsgoofysite/OCON/commands"
 	"oscarsgoofysite/OCON/state"
 	"oscarsgoofysite/OCON/returncommands"
-
+	"os/exec"
+	"strconv"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 
 	if len(os.Args) < 2 {
 		var i string
-		fmt.Println("This is OCON a language created by Oscar! (see more at: https://github.com/oscar366/Ocon)")
+		fmt.Println("This is OCON a language created by Oscar! (see more at: https://github.com/oscar366/Ocon or https://ocon.oscarsgoofy.site)")
 		fmt.Println(`To execute an .ocon file do: "ocon execute {path}"`)
 		fmt.Println("this is a command line tool use it in cmd")
 		fmt.Println("")
@@ -78,7 +79,7 @@ func readFile(path string) {
 }
 
 type Command func([]string)
-var commmands = map[string]Command{
+var commmands = map[string]Command{//typo i cant fix commmands
 	//other
     "echo":      commands.EchoCmd,
 	"#":	emptycommand,//comments
@@ -96,6 +97,8 @@ var commmands = map[string]Command{
 	
 	//conditionals
 	"if": commands.If,
+	
+	
 	"import": emptycommand,
 }
 
@@ -115,26 +118,60 @@ for i, line := range lines {
     }
 	
 	if len(parts) >= 2 && parts[0] == "import" {
-            importfile := parts[1][1:]
+		if parts[1] != "f" {
+			importfile := parts[1][1:]
 
-            dat, err := os.ReadFile(importfile)
-            if err != nil {
-                panic(err)
-            }
+			dat, err := os.ReadFile(importfile)
+			if err != nil {
+				panic(fmt.Sprintf("%v. at: %d", err, i))
+			}
 
-            newlines := strings.Split(string(dat), "\n")
+			newlines := strings.Split(string(dat), "\n")
 
-            // Replace the import line with the imported lines thank you stakoverflow
-            lines = append(
-                lines[:i],
-                append(newlines, lines[i+1:]...)...,
-            )
+			// Replace the import line with the imported lines thank you stakoverflow
+			lines = append(
+				lines[:i],
+				append(newlines, lines[i+1:]...)...,
+			)
 
-            // Move past the newly inserted lines
-            i += len(newlines) - 1
-	}
+			// Move past the newly inserted lines
+			i += len(newlines) - 1
+		} else {
+			//were doing fancy imports in here if were doing them agean
+			/*cmd := exec.Command(parts[2], )
+			stdout, err := cmd.Output()
+				
+			if err != nil {
+				fmt.Println(err.Error())
+				return
+			}
+
+			fmt.Print(string(stdout))*/
+				//check as
+				//import f command {path} as x
+				//0      1  2       3     4  5
+				if parts[4] != "as" {
+					panic("Error: 'as' not found in fancy import. possibly at: " + strconv.Itoa(i))
+				}
+				
+				if parts[2] == "command" {
+					//asname, path
+					fmt.Println("")
+					fmt.Println("debug fancy imports:")
+					fmt.Println("____________________")
+					addToCommands(parts[5][1:], parts[3][1:])
+				} else if parts[2] == "returncommand" {
+					returncommands.AddToReturnCommands(parts[5][1:], parts[3][1:])
+				} else {
+					panic("Error: not a command or return command in fancy import. I think its at: " + strconv.Itoa(i))
+				}
+			}
+		}
 }
 
+
+
+fmt.Println("")
 fmt.Println("debug S:")
 for key, value := range state.SectionList {
     fmt.Println("Key:", key, "Value:", value)
@@ -153,7 +190,31 @@ fmt.Println(" ")
 		execute(lines[state.Pointer])
 		state.Pointer += 1// dude to this after goto is init the pointer adds one so that is why its n-1
 	}
+}
+
+func addToCommands(command string, path string) {
+	//add to commands
+	fmt.Println("adding:" + path + " as:" + command)
+	var function Command = func(args []string) {
+		cmd := exec.Command(path, args...)
+
+		err := cmd.Run()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 	
+	//checker
+	commmands[command] = function
+	_, ok := commmands[command]
+	//thnks stakoverflow: https://stackoverflow.com/questions/2050391/ddg#2050629
+	// If the key exists
+	if ok {
+		// Do something
+		fmt.Println("Key is found :)")
+	} else {
+		fmt.Println("Key is missing from commands.")
+	}
 }
 
 func execute(prgmstring string) {

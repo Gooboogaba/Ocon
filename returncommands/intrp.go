@@ -5,6 +5,8 @@ import (
 	//"math/rand/v2"
 	"strconv"
 	"oscarsgoofysite/OCON/mathfuncs"
+	"log"
+	"os/exec"
 )
 
 type Function func(args []string)  []string
@@ -51,6 +53,32 @@ func Intrp(args []string) []string {
 	}
 	result := val(args[1:])
 	return result
+}
+
+func AddToReturnCommands(command string, path string) {
+	//add to return commands
+	fmt.Println("adding:" + path + " as Return:" + command)
+	var function Function = func(args []string) []string {
+		out, err := exec.Command(path, args...).Output()
+
+		
+		if err != nil {
+			log.Fatal(err)
+		}
+		return []string{string(out)}
+	}
+	
+	//checker
+	returncommands[command] = function
+	_, ok := returncommands[command]
+	//thnks stakoverflow: https://stackoverflow.com/questions/2050391/ddg#2050629
+	// If the key exists
+	if ok {
+		// Do something
+		fmt.Println("Key is found (in returncommands) :)")
+	} else {
+		fmt.Println("Key is missing from returncommands.")
+	}
 }
 
 //all sums
